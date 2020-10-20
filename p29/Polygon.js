@@ -6,7 +6,7 @@ class Polygon{
         this.body = Bodies.circle(x,y,r/1.5, options);
         this.radius = r;
         World.add(world, this.body);
-        this.image = loadImage("hexagon.png");
+        this.image = loadImage("p29/hexagon.png");
     }
 
     display(){
