@@ -13,10 +13,9 @@ class Box{
     }
 
     display(){
-        
+        var pos = this.body.position;
+        var angle = this.body.angle;
         if(this.body.speed < 3){
-            var pos = this.body.position;
-            var angle = this.body.angle;
             push();
             fill("orangered");
             translate(pos.x, pos.y);
@@ -28,7 +27,12 @@ class Box{
             World.remove(world, this.body);
             this.visibility -= 5;
             push();
-            tint(255, this.visibility);
+            if(this.visibility < 0){
+                noStroke();
+            }
+            fill(255,0,0, this.visibility);
+            rectMode(CENTER);
+            rect(pos.x, pos.y, this.width, this.height);
             pop();
         }
         pop();
