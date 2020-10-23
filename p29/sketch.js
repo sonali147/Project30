@@ -14,6 +14,13 @@ var m11, m12, m13, m14, m15;
 var m16, m17, m18, m19, m20;
 var m21, m22, m23, m24, m25;
 
+var score = 0;
+var bg_color = "white";
+
+function preload(){
+    getTime();
+}
+
 function setup(){
     createCanvas(1200,600);
 
@@ -60,15 +67,20 @@ function setup(){
     m24 = new Box(910,250);
     //level 3
     m25 = new Box(890,220);
+
 }
 
 function draw(){
-    background("cornflowerblue");
+    background(bg_color);
+    
     Engine.update(engine);
-
+    
     textSize(30);
     fill("crimson");
     text("Drag the Hexagonal Stone and Release it, to launch it towards the blocks",100,50);
+    textSize(20);
+    fill("green");
+    text("SCORE : " + score, 1000, 100);
     
     ground.display();
     stand1.display();
@@ -113,6 +125,32 @@ function draw(){
     //level 2
     m25.display();
 
+    m1.score();
+    m2.score();
+    m3.score();
+    m4.score();
+    m5.score();
+    m6.score();
+    m7.score();
+    m8.score();
+    m9.score();
+    m10.score();
+    m11.score();
+    m12.score();
+    m13.score();
+    m14.score();
+    m15.score();
+    m16.score();
+    m17.score();
+    m18.score();
+    m19.score();
+    m20.score();
+    m21.score();
+    m22.score();
+    m23.score();
+    m24.score();
+    m25.score();
+
     //text("X:" + mouseX + ", Y:" + mouseY, mouseX, mouseY);
     
 }
@@ -128,4 +166,17 @@ function mouseReleased(){
 function keyPressed(){
     Body.setPosition(polygon.body, {x:300, y:300});
     chain.attach(polygon.body);
+}
+
+async function getTime(){
+    var resp = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    var resp_json = await resp.json();
+    console.log(resp_json);
+    var datetime = resp_json.datetime;
+    var hour = datetime.slice(11,13);
+    if(hour > 06 && hour < 19){
+        bg_color = "cornflowerblue"
+    } else {
+        bg_color = "midnightblue"
+    }
 }

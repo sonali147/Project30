@@ -12,6 +12,12 @@ class Box{
         
     }
 
+    score(){
+        if(this.visibility < 0 && this.visibility > -105 ){
+            score++;
+        }
+    }
+
     display(){
         var pos = this.body.position;
         var angle = this.body.angle;
@@ -35,6 +41,5 @@ class Box{
             rect(pos.x, pos.y, this.width, this.height);
             pop();
         }
-        pop();
     }
 }
